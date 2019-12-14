@@ -3,17 +3,16 @@ package models;
 import helpers.Parser;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Sala {
+public class Room {
 
     private int id;
     private String path;
     private File file;
-    private boolean[] assentos;
+    private boolean[] seats;
 
-    Sala(int id) {
+    Room(int id) {
 
         this.id = id;
 
@@ -31,7 +30,7 @@ public class Sala {
             }
 
             reader = new Scanner(file);
-            assentos = Parser.parseToArray(Integer.parseInt(reader.next()));
+            seats = Parser.parseToArray(Integer.parseInt(reader.next()));
 
             reader.close();
 
@@ -41,18 +40,18 @@ public class Sala {
 
     }
 
-    public boolean[] getAssentos() {
-        return assentos;
+    public boolean[] getSeats() {
+        return seats;
     }
 
-    public boolean reservaAssento(int assento) throws IOException {
+    public boolean pickSeat(int seat) throws IOException {
 
-        if(assento <= 30 && !assentos[assento-1]){
+        if(seat <= 30 && ! seats[seat - 1]){
 
-            assentos[assento-1] = true;
+            seats[seat - 1] = true;
 
             FileWriter writer = new FileWriter(path);
-            writer.write(String.valueOf(Parser.parseToInt(assentos)));
+            writer.write(String.valueOf(Parser.parseToInt(seats)));
             writer.close();
 
             return true;
