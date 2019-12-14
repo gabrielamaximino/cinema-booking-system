@@ -9,4 +9,11 @@ public class Tools {
 
         return label;
     }
+
+    public static Label getNotImplementedLabel() {
+        Label label = new Label("This page has not been implemented yet.");
+        label.setId("notImplemented");
+
+        return label;
+    }
 }

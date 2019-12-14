@@ -1,31 +1,69 @@
 package layouts;
 
 import cinema.Cinema;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import models.Acquisition;
 import resources.tools.Tools;
+
+import java.util.ArrayList;
 
 public class Cart {
     private BorderPane cartView;
-    private Label label;
+    private GridPane emptyCartGridPane;
+    private Label layoutTitle, emptyMessage;
     private Cinema cinema;
+    private Button moviesButton;
+    private ArrayList<Acquisition> acquisitions;
 
     public void setLayout() {
-        label = new Label("Cart");
+        layoutTitle = new Label("Cart");
+        layoutTitle.setId("layoutTitle");
 
-        label.setId("layoutTitle");
+        cartView.setTop(layoutTitle);
 
-        cartView.setTop(label);
-        cartView.setCenter(Tools.getUnderConstructionLabel());
+        if (acquisitions.isEmpty()) {
+            emptyCartGridPane = new GridPane();
+            emptyCartGridPane.setMinSize(800, 800);
+            emptyMessage = new Label("Your cart is currently empty.");
+            emptyMessage.setId("emptyMessage");
+            emptyMessage.setMinWidth(500);
+            emptyMessage.setAlignment(Pos.TOP_CENTER);
+
+            emptyCartGridPane.setAlignment(Pos.CENTER);
+            emptyCartGridPane.add(emptyMessage, 0, 0);
+            emptyCartGridPane.add(moviesButton, 0, 1);
+
+            emptyCartGridPane.setVgap(20);
+            cartView.setCenter(emptyCartGridPane);
+        }
+        else {
+            cartView.setCenter(Tools.getNotImplementedLabel());
+        }
     }
 
     public BorderPane getLayout() {
         return cartView;
     }
 
+    public int getCartSize() {
+        return acquisitions.size();
+    }
+
     public Cart (Cinema cinema) {
+        acquisitions = new ArrayList<Acquisition>();
+        moviesButton = new Button("Go to Movies");
         cartView = new BorderPane();
         this.cinema = cinema;
+
+        moviesButton.setMinWidth(500);
+        moviesButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
         setLayout();
     }

@@ -1,6 +1,7 @@
 package layouts;
 
 import cinema.Cinema;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import models.Movie;
@@ -10,15 +11,17 @@ public class SeatSelection {
     BorderPane seatSelectionView;
     Cinema cinema;
     Movie movie;
-    Label label;
+    Label layoutTitle;
+    Button backButton;
 
     public void setLayout() {
-        label = new Label(movie.title + " – seat selection");
+        layoutTitle = new Label(movie.title + " – seat selection");
 
-        label.setId("layoutTitle");
+        layoutTitle.setId("layoutTitle");
 
-        seatSelectionView.setTop(label);
+        seatSelectionView.setTop(layoutTitle);
         seatSelectionView.setCenter(Tools.getUnderConstructionLabel());
+        seatSelectionView.setBottom(backButton);
     }
 
     public BorderPane getLayout() {
@@ -27,8 +30,11 @@ public class SeatSelection {
 
     public SeatSelection(Movie movie, Cinema cinema) {
         seatSelectionView = new BorderPane();
+        backButton = new Button("Back to Movies");
         this.movie = movie;
         this.cinema = cinema;
+
+        backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
         setLayout();
     }

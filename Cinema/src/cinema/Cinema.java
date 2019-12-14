@@ -21,9 +21,9 @@ public class Cinema extends Application {
     private BorderPane root;
     Scene main;
 
-    Home home;
-    Cart cart;
-    Movies movies;
+    public Home home;
+    public Cart cart;
+    public Movies movies;
 
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
@@ -74,7 +74,7 @@ public class Cinema extends Application {
     }
 
     public void setCartButton() {
-        cartButton = new Button("Cart");
+        cartButton = new Button("Cart (" + cart.getCartSize() + ")");
 
         cartButton.setId("cartButton");
         cartButton.setOnAction(e -> root.setCenter(cart.getLayout()));
@@ -97,10 +97,6 @@ public class Cinema extends Application {
 
     public void setRootCenterLayout(Node layout) {
         root.setCenter(layout);
-    }
-
-    public void setRootTopLayout(Node layout) {
-        root.setTop(layout);
     }
 
     /**

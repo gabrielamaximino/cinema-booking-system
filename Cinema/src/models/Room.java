@@ -16,7 +16,7 @@ public class Room {
 
         this.id = id;
 
-        path = "salas/"+id;
+        path = "rooms/"+id;
 
         file = new File(path);
         Scanner reader;

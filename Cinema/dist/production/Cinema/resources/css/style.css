@@ -32,6 +32,11 @@
  -fx-text-fill: white;
 }
 
+#emptyMessage {
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+}
+
 /* #homeButton {
     -fx-background-image: url(/resources/images/home.png);
     -fx-background-size: 50px 50px;

@@ -9,11 +9,12 @@ import layouts.SeatSelection;
 
 public class Movie{
     public String title;
-    public int length;
+    public int id, length;
     public Image poster;
     Cinema cinema;
 
-    public Movie(String title, int length, Image poster, Cinema cinema) {
+    public Movie(String title, int id, int length, Image poster, Cinema cinema) {
+        this.id = id;
         this.title = title;
         this.length = length;
         this.poster = poster;

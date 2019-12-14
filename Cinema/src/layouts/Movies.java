@@ -43,11 +43,11 @@ public class Movies {
 
         movies = new ArrayList<Movie>();
 
-        movies.add(new Movie("Avengers: End-Game", 120, new Image("/resources/images/vingadores.jpg"),
+        movies.add(new Movie("Avengers: End-Game", movies.size(), 120, new Image("/resources/images/vingadores.jpg"),
                 cinema));
-        movies.add(new Movie("Star-Wars", 180, new Image("/resources/images/star-wars.jpg"),
+        movies.add(new Movie("Star-Wars", movies.size(), 180, new Image("/resources/images/star-wars.jpg"),
                 cinema));
-        movies.add(new Movie("A Star is Born", 80, new Image("/resources/images/star-is-born.jpg"),
+        movies.add(new Movie("A Star is Born", movies.size(), 80, new Image("/resources/images/star-is-born.jpg"),
                 cinema));
 
         setFlowPane();
