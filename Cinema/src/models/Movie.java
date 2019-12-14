@@ -5,20 +5,26 @@
  */
 package models;
 
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
  * @author gabri
  */
-public class Movie {
-    public String titulo;
-    public int duracao;
-    public Image cartaz;
+public class Movie extends Button {
+    public String title;
+    public int length;
+    public Image poster;
     
-    public Movie(String titulo, int duracao, Image cartaz) {
-        this.titulo = titulo;
-        this.duracao = duracao;
-        this.cartaz = cartaz;
+    public Movie(String title, int length, Image poster) {
+        this.title = title;
+        this.length = length;
+        this.poster = poster;
+    }
+
+    public ImageView getPosterImageView() {
+        return new ImageView(poster);
     }
 }

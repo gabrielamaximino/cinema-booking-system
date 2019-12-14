@@ -5,10 +5,12 @@
  */
 package layouts;
 
+import cinema.Cinema;
 import models.Movie;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -16,19 +18,30 @@ import javafx.scene.layout.FlowPane;
  */
 public class Movies {
     FlowPane flow = new FlowPane();
-    Movie m1, m2, m3;
+    ArrayList<Movie> movies;
+    Cinema cinema;
     
     public FlowPane getLayout() {
         flow.getChildren().clear();
         flow.getStyleClass().addAll("flowpane");
-        flow.getChildren().addAll(new ImageView(m1.cartaz), new ImageView(m2.cartaz), new ImageView(m3.cartaz));
+
+        for (Movie movie : movies) flow.getChildren().add(movie.getPosterImageView());
         
         return flow;
     }
     
-    public Movies() {
-        m1 = new Movie("Os Vingadores", 120, new Image("/resources/images/vingadores.jpg"));
-        m2 = new Movie("Star-Wars", 180, new Image("/resources/images/star-wars.jpg"));
-        m3 = new Movie("A Star is Born", 80, new Image("/resources/images/star-is-born.jpg")); 
+    public Movies(Cinema cinema) {
+        this.cinema = cinema;
+        Cart cart = new Cart();
+
+        movies = new ArrayList<Movie>();
+
+        movies.add(new Movie("Avengers: End-Game", 120, new Image("/resources/images/vingadores.jpg")));
+        movies.add(new Movie("Star-Wars", 180, new Image("/resources/images/star-wars.jpg")));
+        movies.add(new Movie("A Star is Born", 80, new Image("/resources/images/star-is-born.jpg")));
+
+        for (Movie movie : movies) {
+            movie.setOnMouseClicked(e -> cinema.root.setCenter(cart.getLayout()));
+        }
     }
 }

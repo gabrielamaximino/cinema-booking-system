@@ -5,6 +5,7 @@
  */
 package cinema;
 
+import javafx.scene.Node;
 import layouts.Cart;
 import layouts.Home;
 import layouts.Movies;
@@ -26,6 +27,7 @@ import javafx.stage.Stage;
 public class Cinema extends Application {
     
     Button m1, m2, m3;
+    public BorderPane root;
     Stage window;
     Scene main;
     
@@ -34,8 +36,8 @@ public class Cinema extends Application {
         window = primaryStage;
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
         StyleManager.getInstance().addUserAgentStylesheet("/resources/css/style.css");
-        
-        BorderPane root = new BorderPane();
+
+        root = new BorderPane();
        
         Label navigator = new Label("NAVIGATOR");
         navigator.setId("navigator");
@@ -57,19 +59,24 @@ public class Cinema extends Application {
         m1.setId("homeButton");
         m1.setOnAction(e -> root.setCenter(home.getLayout()));
         
-        Movies movies = new Movies();
-        m2.setId("moviesButtom");
+        Movies movies = new Movies(this);
+        m2.setId("moviesButton");
         m2.setOnAction(e -> root.setCenter(movies.getLayout()));
 
         Cart cart = new Cart();
-        m3.setId("cartButtom");
+        m3.setId("cartButton");
         m3.setOnAction(e -> root.setCenter(cart.getLayout()));
-              
+
         main = new Scene(root, 1000, 600);
         
         window.setScene(main);
         window.setTitle("Movie Theater Booking System");
+        window.setResizable(false);
         window.show();
+    }
+
+    public void setRootCenterLayout(Node layout) {
+        root.setCenter(layout);
     }
 
     /**

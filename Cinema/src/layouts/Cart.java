@@ -6,7 +6,6 @@
 package layouts;
 
 import javafx.scene.control.Label;
-
 /**
  *
  * @author gabri
