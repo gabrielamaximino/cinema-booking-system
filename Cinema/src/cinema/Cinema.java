@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cinema;
 
 import javafx.scene.Node;
@@ -20,63 +15,92 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-/**
- *
- * @author gabri
- */
 public class Cinema extends Application {
     
-    Button m1, m2, m3;
+    Button homeButton, moviesButton, cartButton;
     public BorderPane root;
-    Stage window;
     Scene main;
-    
+
+    Home home;
+    Cart cart;
+    Movies movies;
+
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
-        window = primaryStage;
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
         StyleManager.getInstance().addUserAgentStylesheet("/resources/css/style.css");
 
         root = new BorderPane();
-       
+
         Label navigator = new Label("NAVIGATOR");
         navigator.setId("navigator");
         root.setTop(navigator);
-        
-        m1 = new Button("Home");
-        m2 = new Button("Movies");
-        m3 = new Button("Cart");
-        
+
+        home = new Home(this);
+        movies = new Movies(this);
+        cart = new Cart(this);
+
+        setHomeButton();
+        setMoviesButton();
+        setCartButton();
+
+        setInitialHomeView();
+
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(m1, m2, m3); 
+        vbox.getChildren().addAll(homeButton, moviesButton, cartButton);
         vbox.getStyleClass().addAll("vbox");
         root.setLeft(vbox);
-        
-        
-        Home home = new Home();
-        root.setCenter(home.getLayout());
-        
-        m1.setId("homeButton");
-        m1.setOnAction(e -> root.setCenter(home.getLayout()));
-        
-        Movies movies = new Movies(this);
-        m2.setId("moviesButton");
-        m2.setOnAction(e -> root.setCenter(movies.getLayout()));
-
-        Cart cart = new Cart();
-        m3.setId("cartButton");
-        m3.setOnAction(e -> root.setCenter(cart.getLayout()));
 
         main = new Scene(root, 1000, 600);
-        
-        window.setScene(main);
-        window.setTitle("Movie Theater Booking System");
-        window.setResizable(false);
-        window.show();
+
+        primaryStage.setScene(main);
+        primaryStage.setTitle("Movie Theater Booking System");
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+
+    public void setHomeButton() {
+        homeButton = new Button("Home");
+
+        homeButton.setId("homeButton");
+        homeButton.setOnAction(e -> root.setCenter(home.getLayout()));
+    }
+
+    public void setMoviesButton() {
+        moviesButton = new Button("Movies");
+
+        moviesButton.setId("moviesButton");
+        moviesButton.setOnAction(e -> root.setCenter(movies.getLayout()));
+    }
+
+    public void setCartButton() {
+        cartButton = new Button("Cart");
+
+        cartButton.setId("cartButton");
+        cartButton.setOnAction(e -> root.setCenter(cart.getLayout()));
+    }
+
+    private void setInitialHomeView() {
+        root.setCenter(home.getLayout("Welcome Back!"));
+    }
+
+    private void setCartView() {
+        BorderPane cartView = new BorderPane();
+        Label title = new Label("Your cart so far");
+
+        title.setId("layoutTitle");
+        cartView.setTop(title);
+        cartView.setCenter(cart.getLayout());
+
+        root.setCenter(cartView);
     }
 
     public void setRootCenterLayout(Node layout) {
         root.setCenter(layout);
+    }
+
+    public void setRootTopLayout(Node layout) {
+        root.setTop(layout);
     }
 
     /**
