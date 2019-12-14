@@ -4,6 +4,7 @@ import cinema.Cinema;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import models.Movie;
 import resources.tools.Tools;
 
@@ -26,6 +27,24 @@ public class SeatSelection {
 
     public BorderPane getLayout() {
         return seatSelectionView;
+    }
+
+    private GridPane seatsLayout(){
+
+        GridPane seats = new GridPane();
+
+        int i = 0, j = 0;
+
+        for (boolean seat : this.movie.sala.getSeats()){
+
+            Button seatButton = new Button();
+            seatButton.setId(seat ? "taken-seat" : "free-seat");
+
+
+        }
+
+        return seats;
+
     }
 
     public SeatSelection(Movie movie, Cinema cinema) {

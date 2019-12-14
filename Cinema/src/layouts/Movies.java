@@ -2,25 +2,33 @@ package layouts;
 
 import cinema.Cinema;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import models.Movie;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import models.Sala;
 
 import java.util.ArrayList;
 
 public class Movies {
     private FlowPane flowPane = new FlowPane();
     private BorderPane moviesView = new BorderPane();
+    private ListView<FlowPane> listView = new ListView<>();
     private Label title = new Label("Movies");
     ArrayList<Movie> movies;
     Cinema cinema;
     
     public void setFlowPane() {
+        /**
         flowPane.getChildren().clear();
         flowPane.getStyleClass().addAll("flowpane");
 
-        for (Movie movie : movies) flowPane.getChildren().add(movie.getPosterImageView());
+        for (Movie movie : movies) flowPane.getChildren().add(movie.getPosterImageView());**/
+
+
+        for (Movie movie : movies) listView.getItems().add(movie.getMoviePreview());
     }
 
     public FlowPane getFlowPane() {
@@ -29,8 +37,9 @@ public class Movies {
 
     public void setLayout() {
         title.setId("layoutTitle");
+        listView.setId("list");
         moviesView.setTop(title);
-        moviesView.setCenter(getFlowPane());
+        moviesView.setCenter(listView);
     }
 
     public BorderPane getLayout() {
