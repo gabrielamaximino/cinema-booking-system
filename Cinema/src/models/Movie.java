@@ -27,7 +27,7 @@ public class Movie{
     }
 
     private void setSelectSeatView() {
-        SeatSelection seatSelection = new SeatSelection(cinema);
+        SeatSelection seatSelection = new SeatSelection(this, cinema);
         cinema.setRootCenterLayout(seatSelection.getLayout());
     }
 }
