@@ -27,8 +27,8 @@ public class Movies {
     }
     
     public Movies() {
-        m1 = new Movie("Os Vingadores", 120, new Image("/resources/images/vingadores.jpg", 150, 250, true, true));
-        m2 = new Movie("Star-Wars", 180, new Image("/resources/images/star-wars.jpg", 150, 250, true, true));
-        m3 = new Movie("A Star is Born", 80, new Image("/resources/images/star-is-born.jpg", 150, 250, true, true)); 
+        m1 = new Movie("Os Vingadores", 120, new Image("/resources/images/vingadores.jpg"));
+        m2 = new Movie("Star-Wars", 180, new Image("/resources/images/star-wars.jpg"));
+        m3 = new Movie("A Star is Born", 80, new Image("/resources/images/star-is-born.jpg")); 
     }
 }
