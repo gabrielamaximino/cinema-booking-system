@@ -1,0 +1,63 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13/12/2019, 19:48:48
+    Author     : gabri
+*/
+
+#navigator {
+   -fx-background-color: #333333;
+   -fx-text-fill: white;
+   -fx-font-size: 15pt;
+   -fx-pref-width: 200px;
+   -fx-alignment: center;
+   -fx-pref-height: 100px;
+   
+}
+
+.root {
+    -fx-background-color: #666666;
+    -fx-font-family: calibri;
+}
+
+.button {
+ -fx-font-size: 13pt;
+ -fx-padding: 20px;
+ -fx-background-color: #333333;
+ -fx-pref-width: 200px;
+ -fx-focus-color: transparent;
+ -fx-alignment: center;
+ -fx-text-fill: white;
+}
+
+/* #homeButton {
+    -fx-background-image: url(/resources/images/home.png);
+    -fx-background-size: 50px 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+*/
+
+.button:hover {
+    -fx-background-color: black;
+}
+
+.button:focused {
+    -fx-background-color: black;
+}
+
+.vbox {
+    -fx-background-color: #333333;
+    -fx-border-width: 1px; 
+    -fx-pref-width: 200px;
+}
+
+.flowpane {
+    -fx-padding: 0 0 0 30;
+    -fx-vgap: 40px;
+    -fx-hgap: 40px;
+}
+
