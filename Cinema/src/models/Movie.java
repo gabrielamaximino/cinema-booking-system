@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
  *
  * @author gabri
  */
-public class Movie extends Button {
+public class Movie{
     public String title;
     public int length;
     public Image poster;
@@ -25,6 +25,8 @@ public class Movie extends Button {
     }
 
     public ImageView getPosterImageView() {
-        return new ImageView(poster);
+        ImageView img = new ImageView(poster);
+        img.setOnMouseClicked(e -> System.out.println("clicked "+ title));
+        return img;
     }
 }

@@ -40,8 +40,5 @@ public class Movies {
         movies.add(new Movie("Star-Wars", 180, new Image("/resources/images/star-wars.jpg")));
         movies.add(new Movie("A Star is Born", 80, new Image("/resources/images/star-is-born.jpg")));
 
-        for (Movie movie : movies) {
-            movie.setOnMouseClicked(e -> cinema.root.setCenter(cart.getLayout()));
-        }
     }
 }
