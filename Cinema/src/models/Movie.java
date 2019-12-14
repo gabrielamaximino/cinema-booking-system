@@ -27,13 +27,7 @@ public class Movie{
     }
 
     private void setSelectSeatView() {
-        BorderPane seatView = new BorderPane();
-        Label title = new Label("Seat Selection");
-
-        title.setId("layoutTitle");
-        seatView.setTop(title);
-        seatView.setCenter(SeatSelection.getLayout());
-
-        cinema.setRootCenterLayout(seatView);
+        SeatSelection seatSelection = new SeatSelection(cinema);
+        cinema.setRootCenterLayout(seatSelection.getLayout());
     }
 }

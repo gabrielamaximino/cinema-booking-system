@@ -48,6 +48,7 @@ public class Home {
         homeView = new BorderPane();
         this.cinema = cinema;
         isInitial = true;
+
         setLayout();
     }
 }

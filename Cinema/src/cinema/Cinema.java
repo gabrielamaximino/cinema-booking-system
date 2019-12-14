@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 
 public class Cinema extends Application {
     
-    Button homeButton, moviesButton, cartButton;
-    public BorderPane root;
+    public Button homeButton, moviesButton, cartButton;
+    private BorderPane root;
     Scene main;
 
     Home home;
