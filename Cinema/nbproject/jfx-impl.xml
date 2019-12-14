@@ -4073,7 +4073,7 @@
             </and>
         </condition>
         <fail message="Error:${line.separator}Browser selection not recognizable from ${config} run configuration.${line.separator}Please go to Project Properties dialog, category Run, to select a valid browser." unless="javafx.run.inbrowser.path"/>
-        <fail message="Error:${line.separator}No browser defined in ${config} run configuration.${line.separator}Please verify in Tools->Options dialog that NetBeans recognizes a valid browser, then go to Project Properties dialog, category Run, to select a valid browser." if="javafx.run.inbrowser.undefined"/>
+        <fail message="Error:${line.separator}No browser defined in ${config} run configuration.${line.separator}Please verify in resources.tools.Tools->Options dialog that NetBeans recognizes a valid browser, then go to Project Properties dialog, category Run, to select a valid browser." if="javafx.run.inbrowser.undefined"/>
         <fail message="Error:${line.separator}Browser ${javafx.run.inbrowser.path} referred from ${config} run configuration can not be found.${line.separator}(This can happen, e.g, when the JavaFX Project is transferred to another system.)${line.separator}Please go to Project Properties dialog, category Run, to select a valid browser." unless="javafx.run.inbrowser.path-exists"/>
     </target>
 
