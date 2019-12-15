@@ -2,12 +2,10 @@ package models;
 
 import cinema.Cinema;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import layouts.SeatSelection;
@@ -17,7 +15,7 @@ public class Movie{
     public int id, length;
     public Image poster;
     Cinema cinema;
-    public Sala sala;
+    public Room room;
 
     public Movie(String title, int id, int length, Image poster, Cinema cinema) {
         this.id = id;
@@ -25,7 +23,7 @@ public class Movie{
         this.length = length;
         this.poster = poster;
         this.cinema = cinema;
-        this.sala = new Sala(id);
+        this.room = new Room(id);
     }
 
     public FlowPane getMoviePreview(){

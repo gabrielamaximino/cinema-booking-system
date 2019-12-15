@@ -1,15 +1,12 @@
 package layouts;
 
 import cinema.Cinema;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import models.Acquisition;
+import models.Seat;
 import resources.tools.Tools;
 
 import java.util.ArrayList;
@@ -20,7 +17,7 @@ public class Cart {
     private Label layoutTitle, emptyMessage;
     private Cinema cinema;
     private Button moviesButton;
-    private ArrayList<Acquisition> acquisitions;
+    public ArrayList<Seat> seats;
 
     public void setLayout() {
         layoutTitle = new Label("Cart");
@@ -28,7 +25,7 @@ public class Cart {
 
         cartView.setTop(layoutTitle);
 
-        if (acquisitions.isEmpty()) {
+        if (seats.isEmpty()) {
             emptyCartGridPane = new GridPane();
             emptyCartGridPane.setMinSize(800, 800);
             emptyMessage = new Label("Your cart is currently empty.");
@@ -49,15 +46,17 @@ public class Cart {
     }
 
     public BorderPane getLayout() {
+        cinema.updateCartButton();
+        setLayout();
         return cartView;
     }
 
     public int getCartSize() {
-        return acquisitions.size();
+        return seats.size();
     }
 
     public Cart (Cinema cinema) {
-        acquisitions = new ArrayList<Acquisition>();
+        seats = new ArrayList<Seat>();
         moviesButton = new Button("Go to Movies");
         cartView = new BorderPane();
         this.cinema = cinema;

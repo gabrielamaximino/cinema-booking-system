@@ -3,12 +3,10 @@ package layouts;
 import cinema.Cinema;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import models.Movie;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
-import models.Sala;
 
 import java.util.ArrayList;
 

@@ -10,13 +10,13 @@ public class Room {
     private int id;
     private String path;
     private File file;
-    private boolean[] seats;
+    private boolean[] seats = new boolean[60];
 
     Room(int id) {
 
         this.id = id;
 
-        path = "rooms/"+id;
+        path = "salas/"+id;
 
         file = new File(path);
         Scanner reader;
@@ -25,12 +25,15 @@ public class Room {
 
             if(!this.file.exists()){
                 FileWriter writer = new FileWriter(path);
-                writer.write("0");
+                for(int i = 0; i<60; i++)writer.write("false\n");
                 writer.close();
             }
 
             reader = new Scanner(file);
-            seats = Parser.parseToArray(Integer.parseInt(reader.next()));
+
+            for(int i = 0; i<60; i++){
+                seats[i] = Boolean.parseBoolean(reader.next());
+            }
 
             reader.close();
 
@@ -46,12 +49,12 @@ public class Room {
 
     public boolean pickSeat(int seat) throws IOException {
 
-        if(seat <= 30 && ! seats[seat - 1]){
+        if(seat <= Parser.size && !seats[seat-1]){
 
-            seats[seat - 1] = true;
+            seats[seat-1] = true;
 
             FileWriter writer = new FileWriter(path);
-            writer.write(String.valueOf(Parser.parseToInt(seats)));
+            for(int i = 0; i<60; i++)writer.write(seats[i]+"\n");
             writer.close();
 
             return true;

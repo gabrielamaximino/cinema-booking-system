@@ -118,6 +118,10 @@ public class Cinema extends Application {
         cartButton.setOnAction(e -> root.setCenter(cart.getLayout()));
     }
 
+    public void updateCartButton() {
+        cartButton.setText("Cart (" + cart.getCartSize() + ")");
+    }
+
     private void setInitialHomeView() {
         root.setCenter(home.getLayout("Welcome!"));
     }
