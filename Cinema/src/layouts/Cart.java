@@ -66,6 +66,7 @@ public class Cart {
             moviesButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
             GridPane buttonsGridPane = new GridPane();
+            buttonsGridPane.setHgap(30);
             buttonsGridPane.add(confirmButton, 0, 0);
             buttonsGridPane.add(moviesButton, 1, 0);
             buttonsGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
