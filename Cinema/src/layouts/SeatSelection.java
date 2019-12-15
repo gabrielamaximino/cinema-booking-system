@@ -50,6 +50,9 @@ public class SeatSelection {
         for (boolean seat : this.movie.sala.getSeats()){
 
             Seat seatButton = new Seat(columns[j], i, 12 * j + i);
+            seatButton.setMinWidth(50);
+            seatButton.setMinHeight(50);
+            
             seatButton.setId(seat ? "taken-seat" : "free-seat");
 
             seatButton.setOnMouseClicked( e -> {
@@ -91,9 +94,9 @@ public class SeatSelection {
 
         cinema.cart.updateCartButton();
 
-        layoutTitle.setText(movie.title + " – acquisition finished");
+        layoutTitle.setText(movie.title + " – selection finished");
 
-        seatSelectionView.setCenter(new Label("Good Movie!"));
+        seatSelectionView.setCenter(new Label("You can go to Cart now. Good Movie! "));
 
         bottomButtons.getChildren().removeAll(addButton, addHalvesButton);
 

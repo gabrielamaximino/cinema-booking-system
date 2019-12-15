@@ -117,14 +117,6 @@
     -fx-font-size: 12pt;
 }
 
-/* #homeButton {
-    -fx-background-image: url(/resources/images/home.png);
-    -fx-background-size: 50px 50px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: left;
-}
-*/
-
 .button:hover {
     -fx-background-color: black;
 }
@@ -145,10 +137,24 @@
     -fx-hgap: 40px;
 }
 
-#taken-seat{
-    -fx-background-color: darkred;
-}
-#chosen-seat{
-    -fx-background-color: green;
+#taken-seat{ 
+    -fx-background-image: url("/resources/images/seat-icon-opaque.png");
+    -fx-background-color: transparent;
 }
 
+#free-seat {
+    -fx-graphic: url("/resources/images/seat-icon.png");
+    -fx-background-color: transparent;
+}
+
+#free-seat:hover {
+    -fx-cursor: hand;
+    -fx-graphic: url("/resources/images/seat-icon.png");
+    -fx-background-color: transparent;
+}
+
+#chosen-seat {
+    -fx-background-image: url("/resources/images/seat-icon-selected.png");
+    -fx-background-color: transparent;
+   
+}
