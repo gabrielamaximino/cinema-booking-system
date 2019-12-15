@@ -118,6 +118,8 @@ public class SeatSelection {
         seatSelectionView = new BorderPane();
         bottomButtons = new FlowPane();
         bottomButtons.setAlignment(Pos.CENTER);
+        bottomButtons.setHgap(30);
+
 
         this.movie = movie;
         this.cinema = cinema;
@@ -137,6 +139,7 @@ public class SeatSelection {
         });
 
         addStudentTicketButton = new Button("Add student ticket to cart");
+        addStudentTicketButton.setMinWidth(250);
         addStudentTicketButton.setOnMouseClicked(e -> {
             if(acquisition.seats.size() > 0) {
                 acquisition.half = true;
