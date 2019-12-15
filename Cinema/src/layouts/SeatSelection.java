@@ -49,7 +49,10 @@ public class SeatSelection {
 
         for (boolean seat : this.movie.sala.getSeats()){
 
-            Seat seatButton = new Seat(columns[j], i, 12 * j + i);
+            //contornando o problema do gap
+            int seatI = i > 8 ? i-1 : i;
+
+            Seat seatButton = new Seat(columns[j], seatI, 12 * j + seatI);
             seatButton.setMinWidth(50);
             seatButton.setMinHeight(50);
             
@@ -60,6 +63,11 @@ public class SeatSelection {
                 if(seatButton.getId().equals("free-seat")){
                     seatButton.setId("chosen-seat");
                     acquisition.seats.add(seatButton);
+                }
+
+                else if(seatButton.getId().equals("chosen-seat")){
+                    seatButton.setId("free-seat");
+                    acquisition.seats.remove(seatButton);
                 }
 
 

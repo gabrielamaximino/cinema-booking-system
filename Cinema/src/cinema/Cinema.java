@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Acquisition;
 
 
 public class Cinema extends Application {
@@ -80,7 +81,10 @@ public class Cinema extends Application {
         empty.setMinHeight(240);
 
         Button exit = new Button("Exit");
-        exit.setOnMouseClicked(e -> Platform.exit());
+        exit.setOnMouseClicked(e -> {
+            cart.undoAcquisitions();
+            Platform.exit();
+        });
 
         VBox vbox = new VBox();
         vbox.getChildren().addAll(homeButton, moviesButton, cartButton, empty, exit);

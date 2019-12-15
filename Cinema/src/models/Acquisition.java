@@ -83,7 +83,7 @@ public class Acquisition {
         return movie;
     }
 
-    private void removeAcquisition() {
+    public void removeAcquisition() {
         cinema.cart.removeAcquisition(this);
 
         for(Seat seat : seats) {

@@ -94,9 +94,27 @@ public class Cart {
         acquisitions.remove(acquisition);
     }
 
+    public void undoAcquisitions(){
+
+        for(Acquisition acquisition : acquisitions){
+            for(Seat seat : acquisition.seats) {
+                try {
+                    acquisition.getMovie().sala.undo(seat.getNumber());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+
+
+    }
+
     public void updateCartButton() {
         cinema.cartButton.setText("Cart (" + cinema.cart.getCartSize() + ")");
     }
+
+
 
     public Cart (Cinema cinema) {
         acquisitions = new ArrayList<Acquisition>();

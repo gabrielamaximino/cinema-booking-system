@@ -153,6 +153,10 @@
     -fx-background-color: transparent;
 }
 
+#chosen-seat:hover {
+    -fx-cursor: hand;
+}
+
 #chosen-seat {
     -fx-background-image: url("/resources/images/seat-icon-selected.png");
     -fx-background-color: transparent;

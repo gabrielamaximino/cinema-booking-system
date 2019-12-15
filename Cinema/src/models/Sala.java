@@ -47,9 +47,9 @@ public class Sala {
 
     public boolean reservaAssento(int assento) throws IOException {
 
-        if(assento <= 60 && !assentos[assento-1]){
+        if(assento <= 60 && !assentos[assento]){
 
-            assentos[assento-1] = true;
+            assentos[assento] = true;
 
             FileWriter writer = new FileWriter(path);
             for(int i = 0; i<60; i++)writer.write(assentos[i]+"\n");
@@ -64,7 +64,7 @@ public class Sala {
 
     public void undo(int assento) throws IOException {
 
-        assentos[assento-1] = false;
+        assentos[assento] = false;
 
         FileWriter writer = new FileWriter(path);
         for(int i = 0; i<60; i++)writer.write(assentos[i]+"\n");
