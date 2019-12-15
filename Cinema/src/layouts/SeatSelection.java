@@ -1,6 +1,7 @@
 package layouts;
 
 import cinema.Cinema;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +10,8 @@ import models.Acquisition;
 import models.Movie;
 import models.Seat;
 
+import java.io.IOException;
+
 public class SeatSelection {
 
     private BorderPane seatSelectionView;
@@ -16,7 +19,7 @@ public class SeatSelection {
     private Cinema cinema;
     private Movie movie;
     private Label layoutTitle;
-    private Button backButton, addButton, addHalfButton, cartButton;
+    private Button backButton, addButton, addHalvesButton;
     private Acquisition acquisition;
 
     public void setLayout() {
@@ -46,15 +49,17 @@ public class SeatSelection {
 
         for (boolean seat : this.movie.sala.getSeats()){
 
-            Seat seatButton = new Seat(columns[j], i);
+            Seat seatButton = new Seat(columns[j], i, 12 * j + i);
             seatButton.setId(seat ? "taken-seat" : "free-seat");
 
             seatButton.setOnMouseClicked( e -> {
 
-                if(seatButton.getId().equals("free-seat"))
-
+                if(seatButton.getId().equals("free-seat")){
                     seatButton.setId("chosen-seat");
                     acquisition.seats.add(seatButton);
+                }
+
+
 
             });
 
@@ -88,15 +93,14 @@ public class SeatSelection {
 
         seatSelectionView.setCenter(new Label("Good Movie!"));
 
-        bottomButtons.getChildren().removeAll(addButton, addHalfButton);
-        bottomButtons.getChildren().add(cartButton);
-
+        bottomButtons.getChildren().removeAll(addButton, addHalvesButton);
 
         cinema.cart.setLayout();
 
     }
 
     public SeatSelection(Movie movie, Cinema cinema) {
+
         seatSelectionView = new BorderPane();
         bottomButtons = new FlowPane();
         bottomButtons.setAlignment(Pos.CENTER);
@@ -104,29 +108,44 @@ public class SeatSelection {
         this.movie = movie;
         this.cinema = cinema;
 
-        acquisition = new Acquisition(movie);
+        acquisition = new Acquisition(movie, cinema);
 
         backButton = new Button("Back to Movies");
         backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
-        addButton = new Button("Add Ticket To Cart");
+        addButton = new Button("Add To Cart");
         addButton.setOnMouseClicked( e -> {
-            this.cinema.cart.addAcquisition(acquisition);
-            finishLayout();
+            if(acquisition.seats.size() > 0) {
+                this.cinema.cart.addAcquisition(acquisition);
+                saveAcquisition(acquisition);
+                finishLayout();
+            }
         });
 
-        addHalfButton = new Button("Add Half Ticket to Cart");
-        addHalfButton.setOnMouseClicked(e -> {
-            acquisition.half = true;
-            this.cinema.cart.addAcquisition(acquisition);
-            finishLayout();
+        addHalvesButton = new Button("Add to Cart as Halves");
+        addHalvesButton.setOnMouseClicked( e -> {
+            if(acquisition.seats.size() > 0) {
+                acquisition.half = true;
+                this.cinema.cart.addAcquisition(acquisition);
+                saveAcquisition(acquisition);
+                finishLayout();
+            }
         });
 
-        bottomButtons.getChildren().addAll(backButton, addButton, addHalfButton);
-
-        cartButton = new Button("Go to Cart");
-        cartButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.cart.getLayout()));
+        bottomButtons.getChildren().addAll(backButton, addButton, addHalvesButton);
 
         setLayout();
+    }
+
+    private void saveAcquisition(Acquisition acquisition){
+
+        for(Seat seat : acquisition.seats){
+            try {
+                movie.sala.reservaAssento(seat.getNumber());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }

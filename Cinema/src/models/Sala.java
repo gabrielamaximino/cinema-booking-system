@@ -62,4 +62,15 @@ public class Sala {
         return false;
     }
 
+    public void undo(int assento) throws IOException {
+
+        assentos[assento-1] = false;
+
+        FileWriter writer = new FileWriter(path);
+        for(int i = 0; i<60; i++)writer.write(assentos[i]+"\n");
+        writer.close();
+
+
+    }
+
 }

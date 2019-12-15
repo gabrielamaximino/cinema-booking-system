@@ -8,8 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
 import models.Acquisition;
+import models.Seat;
 import resources.tools.Tools;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Cart {
@@ -53,7 +55,17 @@ public class Cart {
             }
 
             cartView.setCenter(listView);
+
+            Button confirm = new Button("Confirm Acquisitions");
+            confirm.setOnMouseClicked(e -> {
+                acquisitions.clear();
+                setLayout();
+            });
+
+            cartView.setBottom(confirm);
         }
+
+
     }
 
     public BorderPane getLayout() {
@@ -65,8 +77,12 @@ public class Cart {
         return acquisitions.size();
     }
 
+
     public void addAcquisition(Acquisition acquisition){
         acquisitions.add(acquisition);
+    }
+    public void removeAcquisition(Acquisition acquisition){
+        acquisitions.remove(acquisition);
     }
 
     public void updateCartButton() {
