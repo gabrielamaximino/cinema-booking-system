@@ -57,6 +57,7 @@ public class Cart {
     }
 
     public BorderPane getLayout() {
+        updateCartButton();
         return cartView;
     }
 
@@ -66,6 +67,10 @@ public class Cart {
 
     public void addAcquisition(Acquisition acquisition){
         acquisitions.add(acquisition);
+    }
+
+    public void updateCartButton() {
+        cinema.cartButton.setText("Cart (" + cinema.cart.getCartSize() + ")");
     }
 
     public Cart (Cinema cinema) {

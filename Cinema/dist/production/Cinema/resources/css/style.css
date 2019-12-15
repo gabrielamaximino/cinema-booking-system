@@ -148,4 +148,7 @@
 #taken-seat{
     -fx-background-color: darkred;
 }
+#chosen-seat{
+    -fx-background-color: green;
+}
 

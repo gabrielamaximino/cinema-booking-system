@@ -1,7 +1,6 @@
 package layouts;
 
 import cinema.Cinema;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +16,7 @@ public class SeatSelection {
     private Cinema cinema;
     private Movie movie;
     private Label layoutTitle;
-    private Button backButton, addButton, addHalvesButton;
+    private Button backButton, addButton, addHalfButton, cartButton;
     private Acquisition acquisition;
 
     public void setLayout() {
@@ -89,14 +88,15 @@ public class SeatSelection {
 
         seatSelectionView.setCenter(new Label("Good Movie!"));
 
-        bottomButtons.getChildren().removeAll(addButton, addHalvesButton);
+        bottomButtons.getChildren().removeAll(addButton, addHalfButton);
+        bottomButtons.getChildren().add(cartButton);
+
 
         cinema.cart.setLayout();
 
     }
 
     public SeatSelection(Movie movie, Cinema cinema) {
-
         seatSelectionView = new BorderPane();
         bottomButtons = new FlowPane();
         bottomButtons.setAlignment(Pos.CENTER);
@@ -109,20 +109,23 @@ public class SeatSelection {
         backButton = new Button("Back to Movies");
         backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
-        addButton = new Button("Add To Cart");
+        addButton = new Button("Add Ticket To Cart");
         addButton.setOnMouseClicked( e -> {
             this.cinema.cart.addAcquisition(acquisition);
             finishLayout();
         });
 
-        addHalvesButton = new Button("Add to Cart as Halves");
-        addHalvesButton.setOnMouseClicked( e -> {
+        addHalfButton = new Button("Add Half Ticket to Cart");
+        addHalfButton.setOnMouseClicked(e -> {
             acquisition.half = true;
             this.cinema.cart.addAcquisition(acquisition);
             finishLayout();
         });
 
-        bottomButtons.getChildren().addAll(backButton, addButton, addHalvesButton);
+        bottomButtons.getChildren().addAll(backButton, addButton, addHalfButton);
+
+        cartButton = new Button("Go to Cart");
+        cartButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.cart.getLayout()));
 
         setLayout();
     }
