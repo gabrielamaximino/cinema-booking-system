@@ -1,7 +1,6 @@
 package layouts;
 
 import cinema.Cinema;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,7 +18,7 @@ public class SeatSelection {
     private Cinema cinema;
     private Movie movie;
     private Label layoutTitle;
-    private Button backButton, addButton, addHalvesButton, cartButton;
+    private Button backButton, addTicketButton, addStudentTicketButton, cartButton;
     private Acquisition acquisition;
 
     public void setLayout() {
@@ -106,7 +105,7 @@ public class SeatSelection {
 
         seatSelectionView.setCenter(new Label("You can go to Cart now. Good Movie! "));
 
-        bottomButtons.getChildren().removeAll(addButton, addHalvesButton);
+        bottomButtons.getChildren().removeAll(addTicketButton, addStudentTicketButton);
 
         bottomButtons.getChildren().add(cartButton);
 
@@ -128,8 +127,8 @@ public class SeatSelection {
         backButton = new Button("Back to Movies");
         backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
-        addButton = new Button("Add To Cart");
-        addButton.setOnMouseClicked( e -> {
+        addTicketButton = new Button("Add ticket to Cart");
+        addTicketButton.setOnMouseClicked(e -> {
             if(acquisition.seats.size() > 0) {
                 this.cinema.cart.addAcquisition(acquisition);
                 saveAcquisition(acquisition);
@@ -137,8 +136,8 @@ public class SeatSelection {
             }
         });
 
-        addHalvesButton = new Button("Add to Cart as Halves");
-        addHalvesButton.setOnMouseClicked( e -> {
+        addStudentTicketButton = new Button("Add student ticket to cart");
+        addStudentTicketButton.setOnMouseClicked(e -> {
             if(acquisition.seats.size() > 0) {
                 acquisition.half = true;
                 this.cinema.cart.addAcquisition(acquisition);
@@ -151,7 +150,7 @@ public class SeatSelection {
 
         cartButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.cart.getLayout()));
 
-        bottomButtons.getChildren().addAll(backButton, addButton, addHalvesButton);
+        bottomButtons.getChildren().addAll(backButton, addTicketButton, addStudentTicketButton);
 
         setLayout();
     }
