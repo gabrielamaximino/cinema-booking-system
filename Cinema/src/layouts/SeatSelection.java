@@ -19,7 +19,7 @@ public class SeatSelection {
     private Cinema cinema;
     private Movie movie;
     private Label layoutTitle;
-    private Button backButton, addButton, addHalvesButton;
+    private Button backButton, addButton, addHalvesButton, cartButton;
     private Acquisition acquisition;
 
     public void setLayout() {
@@ -89,11 +89,15 @@ public class SeatSelection {
 
     public void finishLayout(){
 
+        cinema.cart.updateCartButton();
+
         layoutTitle.setText(movie.title + " – acquisition finished");
 
         seatSelectionView.setCenter(new Label("Good Movie!"));
 
         bottomButtons.getChildren().removeAll(addButton, addHalvesButton);
+
+        bottomButtons.getChildren().add(cartButton);
 
         cinema.cart.setLayout();
 
@@ -131,6 +135,10 @@ public class SeatSelection {
                 finishLayout();
             }
         });
+
+        cartButton = new Button("Go to Cart");
+
+        cartButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.cart.getLayout()));
 
         bottomButtons.getChildren().addAll(backButton, addButton, addHalvesButton);
 

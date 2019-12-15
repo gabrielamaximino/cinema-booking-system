@@ -19,7 +19,7 @@ public class Cart {
     private GridPane emptyCartGridPane;
     private Label layoutTitle, emptyMessage;
     private Cinema cinema;
-    private Button moviesButton;
+    private Button moviesButton, cartButton;
     private ArrayList<Acquisition> acquisitions;
 
     public void setLayout() {
@@ -56,13 +56,22 @@ public class Cart {
 
             cartView.setCenter(listView);
 
-            Button confirm = new Button("Confirm Acquisitions");
-            confirm.setOnMouseClicked(e -> {
+            Button confirmButton = new Button("Confirm Acquisitions");
+            confirmButton.setOnMouseClicked(e -> {
                 acquisitions.clear();
                 setLayout();
             });
 
-            cartView.setBottom(confirm);
+            Button moviesButton = new Button("Continue Shopping");
+            moviesButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
+
+            GridPane buttonsGridPane = new GridPane();
+            buttonsGridPane.add(confirmButton, 0, 0);
+            buttonsGridPane.add(moviesButton, 1, 0);
+            buttonsGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+            buttonsGridPane.setAlignment(Pos.BOTTOM_CENTER);
+
+            cartView.setBottom(buttonsGridPane);
         }
 
 

@@ -2,10 +2,13 @@ package models;
 
 import cinema.Cinema;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -15,6 +18,9 @@ public class Acquisition {
 
     public ArrayList<Seat> seats = new ArrayList<>();
     public boolean half = false;
+    private FlowPane flowPane;
+    private GridPane buttonsGridPane;
+    private BorderPane layoutView;
     private Movie movie;
     private Cinema cinema;
 
@@ -63,19 +69,7 @@ public class Acquisition {
         info.getChildren().add(empty);
 
         Button chooseSeat = new Button("Cancel acquisition");
-        chooseSeat.setOnMouseClicked(e -> {
-            cinema.cart.removeAcquisition(this);
-
-            for(Seat seat : seats) {
-                try {
-                    movie.sala.undo(seat.getNumber());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            cinema.cart.setLayout();
-        });
+        chooseSeat.setOnMouseClicked(e -> removeAcquisition());
         chooseSeat.setId("preview-choose-seat");
         info.getChildren().add(chooseSeat);
 
@@ -88,4 +82,20 @@ public class Acquisition {
     public Movie getMovie() {
         return movie;
     }
+
+    private void removeAcquisition() {
+        cinema.cart.removeAcquisition(this);
+
+        for(Seat seat : seats) {
+            try {
+                movie.sala.undo(seat.getNumber());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        cinema.cart.updateCartButton();
+        cinema.cart.setLayout();
+    }
+
 }
