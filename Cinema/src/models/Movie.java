@@ -54,7 +54,7 @@ public class Movie{
         info.getChildren().add(sinopseLabel);
 
         Pane empty = new Pane();
-        empty.setPrefHeight(30);
+        empty.setPrefHeight(10);
         info.getChildren().add(empty);
 
         Button chooseSeat = new Button("Choose a Seat");

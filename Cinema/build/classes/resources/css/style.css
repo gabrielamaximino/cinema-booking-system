@@ -1,13 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose resources.tools.Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 13/12/2019, 19:48:48
-    Author     : gabri
-*/
-
 #navigator {
    -fx-background-color: #333333;
    -fx-text-fill: white;
@@ -16,6 +6,88 @@ and open the template in the editor.
    -fx-alignment: center;
    -fx-pref-height: 100px;
    
+}
+
+#layoutTitle {
+    -fx-alignment: top-left;
+    -fx-text-fill: white;
+    -fx-font-size: 30pt;
+    -fx-font-weight: 900;
+    -fx-padding: -57pt 30pt;
+    -fx-font-smoothing-type: lcd;
+}
+
+.pagination .pagination-control {
+    visibility: hidden; 
+}
+
+#pageBox0 {
+    -fx-background-image: url("/resources/images/avengers-banner.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center ;
+    -fx-background-size: 800px 500px;
+    -fx-opacity: 0.8;
+    
+}
+
+#pageBox1 {
+    -fx-background-image: url("/resources/images/combos.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center ;
+    -fx-background-size: 800px 500px;
+    -fx-opacity: 0.8;
+}
+
+#pageBox2 {
+    -fx-background-image: url("/resources/images/star-is-born-banner.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: -260 0;
+    -fx-background-size: 1100px 500px;
+    -fx-opacity: 0.8;
+}
+
+#buynowButton {
+    -fx-pref-width: 150px;
+    -fx-padding: 0;
+    -fx-pref-height: 50px;
+}
+
+.list-view {
+    -fx-padding:15px ;
+    -fx-background-color: #666666 ;
+}
+
+.list-view:focused {
+    -fx-background-color: #666666;
+}
+.list-cell {
+    -fx-padding: 10px ;
+    -fx-background-color: black ;
+    -fx-background-insets: 10px, 2px ;
+    -fx-text-fill: white;
+}
+
+.list-cell:empty {
+    -fx-padding: 10px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
+
+#preview-title-label{
+    -fx-text-fill: white;
+    -fx-font-size: 20pt;
+    -fx-end-margin: 20px;
+    -fx-padding: 10px;
+}
+
+#preview-sinopse-label{
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-padding: 10px;
+}
+
+#info{
+    -fx-padding: 10px;
 }
 
 .root {
@@ -31,6 +103,18 @@ and open the template in the editor.
  -fx-focus-color: transparent;
  -fx-alignment: center;
  -fx-text-fill: white;
+}
+
+#preview-choose-seat{
+    -fx-font-size: 12pt;
+    -fx-padding: 10px;
+    -fx-background-color: #333333;
+    -fx-pref-width: 150px;
+}
+
+#emptyMessage {
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
 }
 
 /* #homeButton {
@@ -59,5 +143,9 @@ and open the template in the editor.
     -fx-padding: 0 0 0 30;
     -fx-vgap: 40px;
     -fx-hgap: 40px;
+}
+
+#taken-seat{
+    -fx-background-color: darkred;
 }
 

@@ -77,7 +77,7 @@ public class Cinema extends Application {
         setInitialHomeView();
 
         Pane empty = new Pane();
-        empty.setMinHeight(260);
+        empty.setMinHeight(240);
 
         Button exit = new Button("Exit");
         exit.setOnMouseClicked(e -> Platform.exit());
@@ -87,7 +87,8 @@ public class Cinema extends Application {
         vbox.getStyleClass().addAll("vbox");
         root.setLeft(vbox);
 
-
+        root.setCenter(home.getLayout());
+        
         main = new Scene(root, 1000, 600);
 
         primaryStage.setScene(main);
@@ -118,7 +119,7 @@ public class Cinema extends Application {
     }
 
     private void setInitialHomeView() {
-        root.setCenter(home.getLayout("Welcome Back!"));
+        root.setCenter(home.getLayout("Welcome!"));
     }
 
     private void setCartView() {

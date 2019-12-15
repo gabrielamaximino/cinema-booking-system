@@ -17,11 +17,48 @@
     -fx-font-smoothing-type: lcd;
 }
 
+.pagination .pagination-control {
+    visibility: hidden; 
+}
 
+#pageBox0 {
+    -fx-background-image: url("/resources/images/avengers-banner.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center ;
+    -fx-background-size: 800px 500px;
+    -fx-opacity: 0.8;
+    
+}
+
+#pageBox1 {
+    -fx-background-image: url("/resources/images/combos.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center ;
+    -fx-background-size: 800px 500px;
+    -fx-opacity: 0.8;
+}
+
+#pageBox2 {
+    -fx-background-image: url("/resources/images/star-is-born-banner.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: -260 0;
+    -fx-background-size: 1100px 500px;
+    -fx-opacity: 0.8;
+}
+
+#buynowButton {
+    -fx-pref-width: 150px;
+    -fx-padding: 0;
+    -fx-pref-height: 50px;
+}
 
 .list-view {
     -fx-padding:15px ;
     -fx-background-color: #666666 ;
+}
+
+.list-view:focused {
+    -fx-background-color: #666666;
 }
 .list-cell {
     -fx-padding: 10px ;
