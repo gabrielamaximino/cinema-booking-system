@@ -1,0 +1,160 @@
+#navigator {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-font-size: 15pt;
+    -fx-pref-width: 200px;
+    -fx-alignment: center;
+    -fx-pref-height: 100px;
+
+}
+
+#layoutTitle {
+    -fx-alignment: top-left;
+    -fx-text-fill: white;
+    -fx-font-size: 30pt;
+    -fx-font-weight: 900;
+    -fx-padding: -57pt 30pt;
+    -fx-font-smoothing-type: lcd;
+}
+
+.pagination .pagination-control {
+    visibility: hidden;
+}
+
+#pageBox0 {
+    -fx-background-image: url("/resources/images/avengers-banner.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center ;
+    -fx-background-size: 800px 500px;
+    -fx-opacity: 0.8;
+
+}
+
+#pageBox1 {
+    -fx-background-image: url("/resources/images/combos.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center ;
+    -fx-background-size: 800px 500px;
+    -fx-opacity: 0.8;
+}
+
+#pageBox2 {
+    -fx-background-image: url("/resources/images/star-is-born-banner.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: -260 0;
+    -fx-background-size: 1100px 500px;
+    -fx-opacity: 0.8;
+}
+
+#buynowButton {
+    -fx-pref-width: 150px;
+    -fx-padding: 0;
+    -fx-pref-height: 50px;
+}
+
+.list-view {
+    -fx-padding:15px ;
+    -fx-background-color: #666666 ;
+}
+
+.list-view:focused {
+    -fx-background-color: #666666;
+}
+.list-cell {
+    -fx-padding: 10px ;
+    -fx-background-color: black ;
+    -fx-background-insets: 10px, 2px ;
+    -fx-text-fill: white;
+}
+
+.list-cell:empty {
+    -fx-padding: 10px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
+
+#preview-title-label{
+    -fx-text-fill: white;
+    -fx-font-size: 20pt;
+    -fx-end-margin: 20px;
+    -fx-padding: 10px;
+}
+
+#preview-sinopse-label{
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-padding: 10px;
+}
+
+#info{
+    -fx-padding: 10px;
+}
+
+.root {
+    -fx-background-color: #666666;
+    -fx-font-family: calibri;
+}
+
+.button {
+    -fx-font-size: 13pt;
+    -fx-padding: 20px;
+    -fx-background-color: #333333;
+    -fx-pref-width: 200px;
+    -fx-focus-color: transparent;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+
+#preview-choose-seat{
+    -fx-font-size: 12pt;
+    -fx-padding: 10px;
+    -fx-background-color: #333333;
+    -fx-pref-width: 150px;
+}
+
+#emptyMessage {
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+}
+
+.button:hover {
+    -fx-background-color: black;
+}
+
+.button:focused {
+    -fx-background-color: black;
+}
+
+.vbox {
+    -fx-background-color: #333333;
+    -fx-border-width: 1px;
+    -fx-pref-width: 200px;
+}
+
+.flowpane {
+    -fx-padding: 0 0 0 30;
+    -fx-vgap: 40px;
+    -fx-hgap: 40px;
+}
+
+#taken-seat{ 
+    -fx-background-image: url("/resources/images/seat-icon-opaque.png");
+    -fx-background-color: transparent;
+}
+
+#free-seat {
+    -fx-graphic: url("/resources/images/seat-icon.png");
+    -fx-background-color: transparent;
+}
+
+#free-seat:hover {
+    -fx-cursor: hand;
+    -fx-graphic: url("/resources/images/seat-icon.png");
+    -fx-background-color: transparent;
+}
+
+#chosen-seat {
+    -fx-background-image: url("/resources/images/seat-icon-selected.png");
+    -fx-background-color: transparent;
+   
+}
