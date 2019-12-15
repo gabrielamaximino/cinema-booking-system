@@ -1,18 +1,16 @@
 package models;
 
-import helpers.Parser;
-
 import java.io.*;
 import java.util.Scanner;
 
-public class Room {
+public class Sala {
 
     private int id;
     private String path;
     private File file;
-    private boolean[] seats = new boolean[60];
+    private boolean[] assentos = new boolean[60];
 
-    Room(int id) {
+    Sala(int id) {
 
         this.id = id;
 
@@ -32,7 +30,7 @@ public class Room {
             reader = new Scanner(file);
 
             for(int i = 0; i<60; i++){
-                seats[i] = Boolean.parseBoolean(reader.next());
+                assentos[i] = Boolean.parseBoolean(reader.next());
             }
 
             reader.close();
@@ -44,17 +42,17 @@ public class Room {
     }
 
     public boolean[] getSeats() {
-        return seats;
+        return assentos;
     }
 
-    public boolean pickSeat(int seat) throws IOException {
+    public boolean reservaAssento(int assento) throws IOException {
 
-        if(seat <= Parser.size && !seats[seat-1]){
+        if(assento <= 60 && !assentos[assento-1]){
 
-            seats[seat-1] = true;
+            assentos[assento-1] = true;
 
             FileWriter writer = new FileWriter(path);
-            for(int i = 0; i<60; i++)writer.write(seats[i]+"\n");
+            for(int i = 0; i<60; i++)writer.write(assentos[i]+"\n");
             writer.close();
 
             return true;

@@ -1,17 +1,19 @@
 package models;
 
-import cinema.Cinema;
+import javafx.scene.control.Button;
 
-public class Seat {
-    public int seatLine, seatColumn;
-    public Movie movie;
-    private Cinema cinema;
+public class Seat extends Button {
 
-    public Seat(int i, int j, Movie movie, Cinema cinema) {
-        seatLine = i;
-        seatColumn = j;
+    private char row;
+    private int column;
 
-        this.movie = movie;
-        this.cinema = cinema;
+    public Seat(char row, int column){
+        this.row = row;
+        this.column = column;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%c%d", row, column);
     }
 }

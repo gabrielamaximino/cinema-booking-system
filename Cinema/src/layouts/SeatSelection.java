@@ -1,24 +1,24 @@
 package layouts;
 
 import cinema.Cinema;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
+import models.Acquisition;
 import models.Movie;
 import models.Seat;
 
 public class SeatSelection {
-    BorderPane seatSelectionView;
-    GridPane bottomButtons;
-    Cinema cinema;
-    Movie movie;
-    Label layoutTitle;
-    Button backButton, nextButton;
-    int seatLine, seatColumn;
+
+    private BorderPane seatSelectionView;
+    private FlowPane bottomButtons;
+    private Cinema cinema;
+    private Movie movie;
+    private Label layoutTitle;
+    private Button backButton, addButton, addHalvesButton;
+    private Acquisition acquisition;
 
     public void setLayout() {
         layoutTitle = new Label(movie.title + " – seat selection");
@@ -43,14 +43,21 @@ public class SeatSelection {
 
         int i = 0, j = 0;
 
-        for (boolean seat : this.movie.room.getSeats()){
+        char[] columns = new char[]{'A','B','C','D','E','F','G'};
 
-            Button seatButton = new Button();
+        for (boolean seat : this.movie.sala.getSeats()){
+
+            Seat seatButton = new Seat(columns[j], i);
             seatButton.setId(seat ? "taken-seat" : "free-seat");
 
-            int finalI = i, finalJ = j;
+            seatButton.setOnMouseClicked( e -> {
 
-            seatButton.setOnMouseClicked(e -> addToCart(finalI, finalJ));
+                if(seatButton.getId().equals("free-seat"))
+
+                    seatButton.setId("chosen-seat");
+                    acquisition.seats.add(seatButton);
+
+            });
 
             seats.add(seatButton, i, j);
 
@@ -76,32 +83,47 @@ public class SeatSelection {
 
     }
 
+    public void finishLayout(){
+
+        layoutTitle.setText(movie.title + " – acquisition finished");
+
+        seatSelectionView.setCenter(new Label("Good Movie!"));
+
+        bottomButtons.getChildren().removeAll(addButton, addHalvesButton);
+
+        cinema.cart.setLayout();
+
+    }
+
     public SeatSelection(Movie movie, Cinema cinema) {
+
         seatSelectionView = new BorderPane();
-        bottomButtons = new GridPane();
-        backButton = new Button("Back to Movies");
-        nextButton = new Button("Go to Cart");
+        bottomButtons = new FlowPane();
+        bottomButtons.setAlignment(Pos.CENTER);
+
         this.movie = movie;
         this.cinema = cinema;
 
-        backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
-        nextButton.setOnMouseClicked(e -> goToCart());
+        acquisition = new Acquisition(movie);
 
-        bottomButtons.setAlignment(Pos.BOTTOM_CENTER);
-        bottomButtons.minWidth(Region.USE_COMPUTED_SIZE);
-        bottomButtons.add(backButton, 0, 0);
-        bottomButtons.add(nextButton, 1, 0);
+        backButton = new Button("Back to Movies");
+        backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
+
+        addButton = new Button("Add To Cart");
+        addButton.setOnMouseClicked( e -> {
+            this.cinema.cart.addAcquisition(acquisition);
+            finishLayout();
+        });
+
+        addHalvesButton = new Button("Add to Cart as Halves");
+        addHalvesButton.setOnMouseClicked( e -> {
+            acquisition.half = true;
+            this.cinema.cart.addAcquisition(acquisition);
+            finishLayout();
+        });
+
+        bottomButtons.getChildren().addAll(backButton, addButton, addHalvesButton);
 
         setLayout();
-    }
-
-    private void addToCart(int i, int j) {
-        seatLine = i;
-        seatColumn = j;
-    }
-
-    private void goToCart() {
-        cinema.cart.seats.add(new Seat(seatLine, seatColumn, movie, cinema));
-        cinema.setRootCenterLayout(cinema.cart.getLayout());
     }
 }

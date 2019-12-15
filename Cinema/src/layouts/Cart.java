@@ -1,12 +1,13 @@
 package layouts;
 
 import cinema.Cinema;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import models.Seat;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.*;
+import models.Acquisition;
 import resources.tools.Tools;
 
 import java.util.ArrayList;
@@ -17,15 +18,16 @@ public class Cart {
     private Label layoutTitle, emptyMessage;
     private Cinema cinema;
     private Button moviesButton;
-    public ArrayList<Seat> seats;
+    private ArrayList<Acquisition> acquisitions;
 
     public void setLayout() {
+
         layoutTitle = new Label("Cart");
         layoutTitle.setId("layoutTitle");
 
         cartView.setTop(layoutTitle);
 
-        if (seats.isEmpty()) {
+        if (acquisitions.isEmpty()) {
             emptyCartGridPane = new GridPane();
             emptyCartGridPane.setMinSize(800, 800);
             emptyMessage = new Label("Your cart is currently empty.");
@@ -41,22 +43,33 @@ public class Cart {
             cartView.setCenter(emptyCartGridPane);
         }
         else {
-            cartView.setCenter(Tools.getNotImplementedLabel());
+
+            ListView<FlowPane> listView = new ListView<>();
+
+            for(Acquisition acquisition : acquisitions){
+
+                listView.getItems().add(acquisition.getLayout());
+
+            }
+
+            cartView.setCenter(listView);
         }
     }
 
     public BorderPane getLayout() {
-        cinema.updateCartButton();
-        setLayout();
         return cartView;
     }
 
     public int getCartSize() {
-        return seats.size();
+        return acquisitions.size();
+    }
+
+    public void addAcquisition(Acquisition acquisition){
+        acquisitions.add(acquisition);
     }
 
     public Cart (Cinema cinema) {
-        seats = new ArrayList<Seat>();
+        acquisitions = new ArrayList<Acquisition>();
         moviesButton = new Button("Go to Movies");
         cartView = new BorderPane();
         this.cinema = cinema;
