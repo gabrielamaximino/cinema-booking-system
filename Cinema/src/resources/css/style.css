@@ -108,3 +108,7 @@
     -fx-hgap: 40px;
 }
 
+#taken-seat{
+    -fx-background-color: darkred;
+}
+

@@ -11,7 +11,7 @@ public class Sala {
     private int id;
     private String path;
     private File file;
-    private boolean[] assentos;
+    private boolean[] assentos = new boolean[60];
 
     Sala(int id) {
 
@@ -26,12 +26,15 @@ public class Sala {
 
             if(!this.file.exists()){
                 FileWriter writer = new FileWriter(path);
-                writer.write("0");
+                for(int i = 0; i<60; i++)writer.write("false\n");
                 writer.close();
             }
 
             reader = new Scanner(file);
-            assentos = Parser.parseToArray(Integer.parseInt(reader.next()));
+
+            for(int i = 0; i<60; i++){
+                assentos[i] = Boolean.parseBoolean(reader.next());
+            }
 
             reader.close();
 
@@ -47,12 +50,12 @@ public class Sala {
 
     public boolean reservaAssento(int assento) throws IOException {
 
-        if(assento <= 30 && !assentos[assento-1]){
+        if(assento <= Parser.size && !assentos[assento-1]){
 
             assentos[assento-1] = true;
 
             FileWriter writer = new FileWriter(path);
-            writer.write(String.valueOf(Parser.parseToInt(assentos)));
+            for(int i = 0; i<60; i++)writer.write(assentos[i]+"\n");
             writer.close();
 
             return true;

@@ -1,6 +1,11 @@
 package cinema;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.StageStyle;
 import layouts.Cart;
 import layouts.Home;
 import layouts.Movies;
@@ -25,15 +30,40 @@ public class Cinema extends Application {
     public Cart cart;
     public Movies movies;
 
+    double xOffset, yOffset;
+
+
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
+
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
         StyleManager.getInstance().addUserAgentStylesheet("/resources/css/style.css");
+
+
 
         root = new BorderPane();
 
         Label navigator = new Label("NAVIGATOR");
         navigator.setId("navigator");
+
+        navigator.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+
+        navigator.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+            }
+        });
+
         root.setTop(navigator);
 
         home = new Home(this);
@@ -46,10 +76,17 @@ public class Cinema extends Application {
 
         setInitialHomeView();
 
+        Pane empty = new Pane();
+        empty.setMinHeight(260);
+
+        Button exit = new Button("Exit");
+        exit.setOnMouseClicked(e -> Platform.exit());
+
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(homeButton, moviesButton, cartButton);
+        vbox.getChildren().addAll(homeButton, moviesButton, cartButton, empty, exit);
         vbox.getStyleClass().addAll("vbox");
         root.setLeft(vbox);
+
 
         main = new Scene(root, 1000, 600);
 

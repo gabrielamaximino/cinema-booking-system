@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import models.Movie;
 import resources.tools.Tools;
 
@@ -21,7 +22,7 @@ public class SeatSelection {
         layoutTitle.setId("layoutTitle");
 
         seatSelectionView.setTop(layoutTitle);
-        seatSelectionView.setCenter(Tools.getUnderConstructionLabel());
+        seatSelectionView.setCenter(seatsLayout());
         seatSelectionView.setBottom(backButton);
     }
 
@@ -32,6 +33,9 @@ public class SeatSelection {
     private GridPane seatsLayout(){
 
         GridPane seats = new GridPane();
+        seats.setVgap(5);
+        seats.setHgap(5);
+        seats.setMaxSize(700, 100);
 
         int i = 0, j = 0;
 
@@ -39,6 +43,23 @@ public class SeatSelection {
 
             Button seatButton = new Button();
             seatButton.setId(seat ? "taken-seat" : "free-seat");
+
+            seats.add(seatButton, i, j);
+
+            i++;
+
+            if(i == 13){
+                i = 0;
+                j++;
+            }
+
+            if(i == 8){
+                Pane empty = new Pane();
+                empty.setMinWidth(30);
+                seats.add(empty, i, j);
+                i++;
+            }
+
 
 
         }
