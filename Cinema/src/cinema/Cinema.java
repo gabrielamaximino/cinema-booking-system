@@ -44,7 +44,7 @@ public class Cinema extends Application {
 
         root = new BorderPane();
 
-        Label navigator = new Label("NAVIGATOR");
+        Label navigator = new Label("MENU");
         navigator.setId("navigator");
 
         navigator.setOnMousePressed(new EventHandler<MouseEvent>() {
