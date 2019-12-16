@@ -59,6 +59,7 @@ public class Cart {
             Button confirmButton = new Button("Confirm Acquisitions");
             confirmButton.setOnMouseClicked(e -> {
                 acquisitions.clear();
+                updateCartButton();
                 setLayout();
             });
 
