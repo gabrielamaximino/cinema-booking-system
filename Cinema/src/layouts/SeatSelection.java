@@ -35,12 +35,14 @@ public class SeatSelection {
         return seatSelectionView;
     }
 
-    private GridPane seatsLayout(){
+    private Pane seatsLayout(){
+
+        Pane room = new Pane();
 
         GridPane seats = new GridPane();
         seats.setVgap(5);
         seats.setHgap(5);
-        seats.setMaxSize(700, 100);
+        seats.setMaxSize(400, 100);
 
         int i = 0, j = 0;
 
@@ -89,12 +91,17 @@ public class SeatSelection {
                 i++;
             }
 
-
-
         }
+        
+        Label screen = new Label("Screen");
+        screen.setId("screen");
+        screen.setPrefSize(650, 2);
+        screen.relocate(70, 350);
+        seats.relocate(50, 50);
+        room.getChildren().addAll(seats, screen);
+        
 
-        return seats;
-
+        return room;
     }
 
     public void finishLayout(){

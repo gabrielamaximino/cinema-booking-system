@@ -42,8 +42,6 @@ public class Cinema extends Application {
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
         StyleManager.getInstance().addUserAgentStylesheet("/resources/css/style.css");
 
-
-
         root = new BorderPane();
 
         Label navigator = new Label("NAVIGATOR");
