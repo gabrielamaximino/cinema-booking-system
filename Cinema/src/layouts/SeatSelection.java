@@ -22,7 +22,7 @@ public class SeatSelection {
     private Acquisition acquisition;
 
     public void setLayout() {
-        layoutTitle = new Label(movie.title + " – seat selection");
+        layoutTitle = new Label(movie.title + " – Seat Selection");
 
         layoutTitle.setId("layoutTitle");
 
@@ -108,9 +108,9 @@ public class SeatSelection {
 
         cinema.cart.updateCartButton();
 
-        layoutTitle.setText(movie.title + " – selection finished");
+        layoutTitle.setText(movie.title + " – Selection Finished");
 
-        seatSelectionView.setCenter(new Label("You can go to Cart now. Good Movie! "));
+        seatSelectionView.setCenter(new Label("You can go to Cart now. Good movie! "));
 
         bottomButtons.getChildren().removeAll(addTicketButton, addStudentTicketButton);
 
@@ -136,7 +136,7 @@ public class SeatSelection {
         backButton = new Button("Back to Movies");
         backButton.setOnMouseClicked(e -> cinema.setRootCenterLayout(cinema.movies.getLayout()));
 
-        addTicketButton = new Button("Add ticket to Cart");
+        addTicketButton = new Button("Add Ticket to Cart");
         addTicketButton.setOnMouseClicked(e -> {
             if(acquisition.seats.size() > 0) {
                 this.cinema.cart.addAcquisition(acquisition);
@@ -145,7 +145,7 @@ public class SeatSelection {
             }
         });
 
-        addStudentTicketButton = new Button("Add student ticket to cart");
+        addStudentTicketButton = new Button("Add Student Ticket to Cart");
         addStudentTicketButton.setMinWidth(250);
         addStudentTicketButton.setOnMouseClicked(e -> {
             if(acquisition.seats.size() > 0) {
